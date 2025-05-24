@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Event Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .event {
+      background-color: #e9ecef;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .event h3 {
+      margin: 0 0 5px 0;
+    }
+    .event small {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Event Management System</h1>
+    <input type="text" id="eventTitle" placeholder="Event Title" required>
+    <input type="date" id="eventDate" required>
+    <textarea id="eventDesc" placeholder="Event Description" rows="3"></textarea>
+    <button onclick="addEvent()">Add Event</button>
+
+    <h2>Upcoming Events</h2>
+    <div id="eventList"></div>
+  </div>
+
+  <script>
+    function addEvent() {
+      const title = document.getElementById('eventTitle').value;
+      const date = document.getElementById('eventDate').value;
+      const desc = document.getElementById('eventDesc').value;
+
+      if (!title || !date) {
+        alert('Please enter both title and date!');
+        return;
+      }
+
+      const eventList = document.getElementById('eventList');
+
+      const eventDiv = document.createElement('div');
+      eventDiv.className = 'event';
+
+      eventDiv.innerHTML = `
+        <h3>${title}</h3>
+        <small>${date}</small>
+        <p>${desc}</p>
+      `;
+
+      eventList.appendChild(eventDiv);
+
+      // Clear inputs
+      document.getElementById('eventTitle').value = '';
+      document.getElementById('eventDate').value = '';
+      document.getElementById('eventDesc').value = '';
+    }
+  </script>
+</body>
+</html>
